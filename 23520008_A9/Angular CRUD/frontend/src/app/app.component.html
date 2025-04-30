@@ -1,0 +1,59 @@
+<div class="container" style="max-width: 900px; margin: 20px auto; padding: 20px; 
+                              border: 1px solid #ddd; border-radius: 8px; 
+                              background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); 
+                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+  <h1 style="text-align: center; margin-bottom: 20px; color: white;">Company Management</h1>
+
+  <!-- Tabs for Add and Registration -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button (click)="showTab = 'add'" [class.active]="showTab === 'add'" 
+            style="padding: 10px 20px; margin-right: 10px; font-size: 16px; 
+                   background-color: #f24ace; color: white; border: none; border-radius: 5px; 
+                   cursor: pointer; transition: background-color 0.3s, transform 0.3s ease;">
+      Add Details
+    </button>
+    <button (click)="showTab = 'registrations'" [class.active]="showTab === 'registrations'" 
+            style="padding: 10px 20px; font-size: 16px; 
+                   background-color: #f24ace; color: white; border: none; border-radius: 5px; 
+                   cursor: pointer; transition: background-color 0.3s, transform 0.3s ease;">
+      Registrations
+    </button>
+  </div>
+
+  <!-- Add Details Tab -->
+  <div *ngIf="showTab === 'add'" style="margin-bottom: 30px;">
+    <app-company-form (companyUpdated)="onCompanyUpdated($event)"></app-company-form>
+  </div>
+
+  <!-- Registrations Tab -->
+  <div *ngIf="showTab === 'registrations'">
+    <app-company-list (companyUpdated)="onCompanyUpdated($event)"></app-company-list>
+  </div>
+</div>
+
+<style>
+  .active {
+    background-color: #f24ace;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
+
+  button:hover {
+    background-color: #4596ed;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+</style>
